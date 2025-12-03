@@ -1,4 +1,4 @@
-use rust_olymp::mod_int;
+use rust_olymp::mod_int::*;
 
 #[test]
 fn test_from() {

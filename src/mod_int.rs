@@ -70,7 +70,7 @@ impl<const MOD: i64> MulAssign<ModInt<MOD>> for ModInt<MOD> {
 }
 
 impl<const MOD: i64> ModInt<MOD> {
-  fn inv(self) -> Self {
+  pub fn inv(self) -> Self {
     self.pow(MOD - 2)
   }
 
