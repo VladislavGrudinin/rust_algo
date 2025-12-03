@@ -1,0 +1,54 @@
+use rust_olymp::algo::next_permutation;
+
+#[test]
+fn test_next_permutation() {
+  let mut a = [1, 2, 3, 4];
+  next_permutation(&mut a);
+  assert_eq!(a, [1, 2, 4, 3]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [1, 3, 2, 4]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [1, 3, 4, 2]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [1, 4, 2, 3]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [1, 4, 3, 2]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [2, 1, 3, 4]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [2, 1, 4, 3]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [2, 3, 1, 4]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [2, 3, 4, 1]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [2, 4, 1, 3]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [2, 4, 3, 1]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [3, 1, 2, 4]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [3, 1, 4, 2]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [3, 2, 1, 4]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [3, 2, 4, 1]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [3, 4, 1, 2]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [3, 4, 2, 1]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [4, 1, 2, 3]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [4, 1, 3, 2]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [4, 2, 1, 3]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [4, 2, 3, 1]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [4, 3, 1, 2]);
+  assert_eq!(next_permutation(&mut a), true);
+  assert_eq!(a, [4, 3, 2, 1]);
+  assert_eq!(next_permutation(&mut a), false);
+  assert_eq!(a, [1, 2, 3, 4]);
+}

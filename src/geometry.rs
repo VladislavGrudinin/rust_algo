@@ -1,3 +1,4 @@
+use std::ops::{Add, Sub, Neg, Mul};
 
 #[derive(Clone, Copy, Eq, PartialEq, PartialOrd, Ord, Debug)]
 struct Vec2<T> {

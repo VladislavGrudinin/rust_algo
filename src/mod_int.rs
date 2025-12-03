@@ -1,13 +1,20 @@
 use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
-struct ModInt<const MOD: i64> {
+#[derive(Default, Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub struct ModInt<const MOD: i64> {
   v: i64,
 }
 
 impl<const MOD: i64> From<i64> for ModInt<MOD> {
   fn from(v: i64) -> Self {
+    let v = v % MOD;
     Self { v }
+  }
+}
+
+impl<const MOD: i64> From<ModInt<MOD>> for i64 {
+  fn from(value: ModInt<MOD>) -> Self {
+    value.v
   }
 }
 
@@ -81,53 +88,6 @@ impl<const MOD: i64> ModInt<MOD> {
   }
 }
 
-type ModInt3 = ModInt<998_244_353>;
-type ModInt7 = ModInt<1_000_000_007>;
-type ModInt9 = ModInt<1_000_000_009>;
-
-mod tests {
-  use super::*;
-
-  #[test]
-  fn test_from() {
-    let v = 0i64;
-    let _: ModInt7 = v.into();
-  }
-
-  #[test]
-  fn test_add() {
-    let a: ModInt7 = 5.into();
-    let b: ModInt7 = 1_000_000_002.into();
-    let c = a + b;
-    let mut d = a;
-    d += b;
-    let result = 0.into();
-    assert_eq!(c, d);
-    assert_eq!(c, result);
-  }
-
-  #[test]
-  fn test_sub() {
-    let a: ModInt7 = 5.into();
-    let b: ModInt7 = 1_000_000_002.into();
-    let c = a + b;
-    assert_eq!(c, 0.into());
-    assert_eq!(c - b, a);
-    assert_eq!(c - a, b);
-  }
-
-  #[test]
-  fn test_mul() {
-    let a: ModInt7 = 2.into();
-    let b: ModInt7 = (1_000_000_008 / 2).into();
-    assert_eq!(a * b, 1.into());
-  }
-
-  #[test]
-  fn test_inv() {
-    for i in 1..100 {
-      let a: ModInt7 = i.into();
-      assert_eq!(a * a.inv(), 1.into());
-    }
-  }
-}
+pub type ModInt3 = ModInt<998_244_353>;
+pub type ModInt7 = ModInt<1_000_000_007>;
+pub type ModInt9 = ModInt<1_000_000_009>;

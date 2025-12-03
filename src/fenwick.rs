@@ -1,3 +1,5 @@
+use std::cmp;
+use std::ops::Add;
 
 struct FenwickTree<T> {
   t: Vec<T>,

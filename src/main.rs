@@ -2,15 +2,17 @@
 #![allow(non_snake_case)]
 use std::cmp::{self, Reverse};
 use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet};
-use std::io::{self, Read, Write};
+use std::io::{self, Read, Write, stdin};
 use std::ops::{self, Add, AddAssign, Deref, Mul, MulAssign, Neg, Sub, SubAssign};
 
-fn solve(input: &mut Input, out: &mut Output) {}
+fn solve(input: &mut Input, out: &mut Output) {
+}
 
 fn main() {
   let mut input = Input::stdin(io::stdin());
   let mut output = Output::stdout(io::stdout());
-  let tests = input.read_int();
+  //let tests = input.read_int();
+  let tests = 1;
   for _ in 0..tests {
     solve(&mut input, &mut output);
   }
@@ -110,88 +112,3 @@ impl Write for Output {
     self.out.flush()
   }
 }
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
-struct ModInt<const MOD: i64> {
-  v: i64,
-}
-
-impl<const MOD: i64> From<i64> for ModInt<MOD> {
-  fn from(v: i64) -> Self {
-    Self { v }
-  }
-}
-
-impl<const MOD: i64> Add<ModInt<MOD>> for ModInt<MOD> {
-  type Output = Self;
-
-  fn add(mut self, rhs: Self) -> Self {
-    self += rhs;
-    self
-  }
-}
-
-impl<const MOD: i64> AddAssign<ModInt<MOD>> for ModInt<MOD> {
-  fn add_assign(&mut self, rhs: ModInt<MOD>) {
-    self.v += rhs.v;
-    if self.v >= MOD {
-      self.v -= MOD;
-    }
-  }
-}
-
-impl<const MOD: i64> Sub<ModInt<MOD>> for ModInt<MOD> {
-  type Output = Self;
-
-  fn sub(mut self, rhs: Self) -> Self {
-    self -= rhs;
-    self
-  }
-}
-
-impl<const MOD: i64> SubAssign<ModInt<MOD>> for ModInt<MOD> {
-  fn sub_assign(&mut self, rhs: ModInt<MOD>) {
-    self.v -= rhs.v;
-    if self.v < 0 {
-      self.v += MOD;
-    }
-  }
-}
-
-impl<const MOD: i64> Mul<ModInt<MOD>> for ModInt<MOD> {
-  type Output = Self;
-
-  fn mul(mut self, rhs: Self) -> Self {
-    self *= rhs;
-    self
-  }
-}
-
-impl<const MOD: i64> MulAssign<ModInt<MOD>> for ModInt<MOD> {
-  fn mul_assign(&mut self, rhs: ModInt<MOD>) {
-    self.v = self.v * rhs.v % MOD;
-  }
-}
-
-impl<const MOD: i64> ModInt<MOD> {
-  fn inv(self) -> Self {
-    self.pow(MOD - 2)
-  }
-
-  fn pow(self, mut b: i64) -> Self {
-    let mut a = self;
-    let mut result = 1.into();
-    while b != 0 {
-      if b & 1 != 0 {
-        result *= a;
-      }
-      a *= a;
-      b >>= 1;
-    }
-    result
-  }
-}
-
-type ModInt3 = ModInt<998_244_353>;
-type ModInt7 = ModInt<1_000_000_007>;
-type ModInt9 = ModInt<1_000_000_009>;
