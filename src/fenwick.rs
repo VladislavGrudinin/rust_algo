@@ -1,13 +1,13 @@
 use std::cmp;
-use std::ops::Add;
+use std::ops::{Add, Sub};
 
-struct FenwickTree<T> {
+pub struct FenwickTree<T> {
   t: Vec<T>,
   op: fn(T, T) -> T,
 }
 
 impl<T: Default + Add<Output = T> + Copy> FenwickTree<T> {
-  fn new_sum(n: usize) -> Self {
+  pub fn new_sum(n: usize) -> Self {
     Self {
       t: vec![T::default(); n],
       op: |a, b| a + b,
@@ -15,36 +15,49 @@ impl<T: Default + Add<Output = T> + Copy> FenwickTree<T> {
   }
 }
 
-impl<T: Default + Ord + Copy> FenwickTree<T> {
-  fn new_max(n: usize) -> Self {
+impl<T: Ord + Copy> FenwickTree<T> {
+  pub fn new_max(n: usize, v: T) -> Self {
     Self {
-      t: vec![T::default(); n],
+      t: vec![v; n],
       op: |a, b| cmp::max(a, b),
     }
   }
 
-  fn new_min(n: usize) -> Self {
+  pub fn new_min(n: usize, v: T) -> Self {
     Self {
-      t: vec![T::default(); n],
+      t: vec![v; n],
       op: |a, b| cmp::min(a, b),
     }
   }
 }
 
-impl<T: Default + Copy> FenwickTree<T> {
-  fn update(&mut self, mut p: usize, v: T) {
+impl<T: Copy> FenwickTree<T> {
+  pub fn update(&mut self, mut p: usize, v: T) {
     while p < self.t.len() {
       self.t[p] = (self.op)(self.t[p], v);
       p |= p + 1;
     }
   }
 
-  fn get(&self, mut p: usize) -> T {
-    let mut res = T::default();
-    while p < self.t.len() {
-      res = (self.op)(res, self.t[p]);
+  pub fn get(&self, mut p: usize) -> T {
+    let mut res = self.t[p];
+    loop {
       p = (p & (p + 1)).wrapping_sub(1);
+      if p >= self.t.len() {
+        break;
+      }
+      res = (self.op)(res, self.t[p]);
     }
     res
+  }
+}
+
+impl<T: Sub<Output = T> + Copy> FenwickTree<T> {
+  pub fn sum(&self, l: usize, r: usize) -> T {
+    if l > 0 {
+      self.get(r) - self.get(l - 1)
+    } else {
+      self.get(r)
+    }
   }
 }
