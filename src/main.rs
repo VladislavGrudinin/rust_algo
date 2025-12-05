@@ -3,7 +3,7 @@
 use std::cmp::{self, Ordering, Reverse, max, min};
 use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
 use std::io::{self, Read, Write, stdin};
-use std::mem::swap;
+use std::mem::{replace, swap, take};
 use std::ops::{self, Add, AddAssign, Deref, Mul, MulAssign, Neg, Sub, SubAssign};
 
 fn solve(input: &mut Input, out: &mut Output) {
