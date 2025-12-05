@@ -4,4 +4,5 @@ pub mod algo;
 pub mod fenwick;
 pub mod geometry;
 pub mod input;
+pub mod math;
 pub mod mod_int;

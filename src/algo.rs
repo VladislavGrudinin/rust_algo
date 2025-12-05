@@ -15,5 +15,5 @@ pub fn next_permutation<T: Ord>(a: &mut [T]) -> bool {
     }
   }
   a.reverse();
-  return false;
+  false
 }

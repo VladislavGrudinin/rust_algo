@@ -1,8 +1,9 @@
 #![allow(dead_code, unused_imports)]
 #![allow(non_snake_case)]
-use std::cmp::{self, Reverse};
-use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet};
+use std::cmp::{self, Ordering, Reverse, max, min};
+use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
 use std::io::{self, Read, Write, stdin};
+use std::mem::swap;
 use std::ops::{self, Add, AddAssign, Deref, Mul, MulAssign, Neg, Sub, SubAssign};
 
 fn solve(input: &mut Input, out: &mut Output) {
@@ -28,7 +29,7 @@ struct Input {
 impl Input {
   fn stdin(stdin: io::Stdin) -> Self {
     Input {
-      stdin: stdin,
+      stdin,
       buffer: vec![0; 4096],
       pos: 0,
       size: 0,
@@ -76,7 +77,7 @@ impl Input {
       result += (c - b'0') as i64;
       c = self.get();
     }
-    return result * sign;
+    result * sign
   }
 
   fn read_size(&mut self) -> usize {
