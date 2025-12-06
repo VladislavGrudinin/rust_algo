@@ -1,10 +1,12 @@
 #![allow(dead_code, unused_imports)]
 #![allow(non_snake_case)]
 use std::cmp::{self, Ordering, Reverse, max, min};
+use std::collections::hash_map::Entry;
 use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
 use std::io::{self, Read, Write, stdin};
 use std::mem::{replace, swap, take};
 use std::ops::{self, Add, AddAssign, Deref, Mul, MulAssign, Neg, Sub, SubAssign};
+use std::process::exit;
 
 fn solve(input: &mut Input, out: &mut Output) {
 }
@@ -12,8 +14,7 @@ fn solve(input: &mut Input, out: &mut Output) {
 fn main() {
   let mut input = Input::stdin(io::stdin());
   let mut output = Output::stdout(io::stdout());
-  //let tests = input.read_int();
-  let tests = 1;
+  let tests = input.read_int();
   for _ in 0..tests {
     solve(&mut input, &mut output);
   }
