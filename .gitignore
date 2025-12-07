@@ -1,3 +1,5 @@
 /target
 /in.txt
 /out.txt
+/perf.data
+/perf.data.old

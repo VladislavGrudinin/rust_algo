@@ -1,26 +1,7 @@
-#![allow(dead_code, unused_imports)]
-#![allow(non_snake_case)]
-use std::cmp::{self, Ordering, Reverse, max, min};
-use std::collections::hash_map::Entry;
-use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDeque};
-use std::io::{self, BufWriter, Read, Write, stdin, stdout};
-use std::mem::{replace, swap, take};
-use std::ops::{self, Add, AddAssign, Deref, Mul, MulAssign, Neg, Sub, SubAssign};
-use std::process::exit;
-
-fn solve(input: &mut Input, out: &mut Output) {
-  let n = input.read_size();
-  out.println(n);
-}
-
-fn main() {
-  let mut input = Input::stdin();
-  let mut output = Output::stdout();
-  let tests = input.read_int();
-  for _ in 0..tests {
-    solve(&mut input, &mut output);
-  }
-}
+use std::{
+  fmt::write,
+  io::{self, BufWriter, Read, Stdout, Write, stdin, stdout},
+};
 
 pub struct Input {
   stdin: io::Stdin,
@@ -174,7 +155,7 @@ impl_writable_for_tuples!(A B C);
 impl_writable_for_tuples!(A B C D);
 
 enum OutputDest {
-  Stdout(BufWriter<io::Stdout>),
+  Stdout(BufWriter<Stdout>),
   Buffer(BufWriter<Vec<u8>>),
 }
 
