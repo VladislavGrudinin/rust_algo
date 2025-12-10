@@ -1,3 +1,4 @@
+#![feature(trace_macros)]
 #![allow(dead_code, unused_imports)]
 #![allow(non_snake_case)]
 

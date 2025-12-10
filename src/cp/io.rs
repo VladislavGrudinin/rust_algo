@@ -220,11 +220,12 @@ impl Output {
     let old_delim = self.delim;
     self.delim = b'\n';
     self.print_iter(iter);
+    self.put(self.delim);
     self.delim = old_delim;
   }
 
   fn put(&mut self, c: u8) {
-    self.out.write(&[c]).unwrap();
+    self.out.write_all(&[c]).unwrap();
   }
 
   fn print_iter<T: Writable, I: Iterator<Item = T>>(&mut self, iter: I) {

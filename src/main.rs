@@ -9,8 +9,6 @@ use std::ops::{self, Add, AddAssign, Deref, Mul, MulAssign, Neg, Sub, SubAssign}
 use std::process::exit;
 
 fn solve(input: &mut Input, out: &mut Output) {
-  let n = input.read_size();
-  out.println(n);
 }
 
 fn main() {
@@ -239,11 +237,12 @@ impl Output {
     let old_delim = self.delim;
     self.delim = b'\n';
     self.print_iter(iter);
+    self.put(self.delim);
     self.delim = old_delim;
   }
 
   fn put(&mut self, c: u8) {
-    self.out.write(&[c]).unwrap();
+    self.out.write_all(&[c]).unwrap();
   }
 
   fn print_iter<T: Writable, I: Iterator<Item = T>>(&mut self, iter: I) {
