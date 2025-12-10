@@ -37,6 +37,10 @@ impl Input {
     c
   }
 
+  pub fn read_char(&mut self) -> u8 {
+    self.skip_whitespace()
+  }
+
   pub fn read_str(&mut self) -> Vec<u8> {
     let mut c = self.skip_whitespace();
     let mut res = Vec::with_capacity(32);
