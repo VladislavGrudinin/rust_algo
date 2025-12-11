@@ -53,6 +53,12 @@ impl Input {
     self.buffer[self.pos - 1]
   }
 
+  fn is_eof(&mut self) -> bool {
+    self.skip_whitespace();
+    self.pos -= 1;
+    self.size == 0
+  }
+
   fn skip_whitespace(&mut self) -> u8 {
     let mut c = self.get();
     while c.is_ascii_whitespace() {
@@ -98,6 +104,10 @@ impl Input {
 
   pub fn read_i32_vec(&mut self, n: usize) -> Vec<i32> {
     (0..n).map(|_| self.read_size() as i32).collect()
+  }
+
+  pub fn read_i64_vec(&mut self, n: usize) -> Vec<i64> {
+    (0..n).map(|_| self.read_size() as i64).collect()
   }
 
   pub fn read_size_vec(&mut self, n: usize) -> Vec<usize> {
