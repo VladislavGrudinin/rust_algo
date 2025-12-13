@@ -35,6 +35,18 @@ impl SegmentTree {
     tree
   }
 
+  pub fn leaf(&mut self, p: usize) -> &mut SegmentNode {
+    &mut self.t[p + self.n]
+  }
+
+  pub fn update(&mut self, mut p: usize) {
+    p += self.n;
+    while p > 0 {
+      p >>= 1;
+      self.t[p] = SegmentNode::merge(self.t[p * 2], self.t[p * 2 + 1]);
+    }
+  }
+
   pub fn query(&self, mut l: usize, mut r: usize) -> SegmentNode {
     let mut result = SegmentNode::new();
     l += self.n;
