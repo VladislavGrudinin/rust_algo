@@ -1,6 +1,6 @@
 use std::{cmp::min, mem::swap};
 
-pub fn gcd(mut a: u64, mut b: u64) -> u64 {
+pub fn gcd(mut a: usize, mut b: usize) -> usize {
   if a == 0 {
     return b;
   }
@@ -23,6 +23,24 @@ pub fn gcd(mut a: u64, mut b: u64) -> u64 {
   }
 }
 
-pub fn lcm(a: u64, b: u64) -> u64 {
+pub fn lcm(a: usize, b: usize) -> usize {
   a / gcd(a, b) * b
+}
+
+pub fn get_primes(max_prime: usize) -> (Vec<usize>, Vec<usize>) {
+  let mut lt = vec![0; max_prime];
+  let mut primes = Vec::new();
+  for i in 2..max_prime {
+    if lt[i] == 0 {
+      lt[i] = i;
+      primes.push(i);
+    }
+    for &p in &primes {
+      if i * p >= max_prime || lt[i] < p {
+        break;
+      }
+      lt[i * p] = p;
+    }
+  }
+  (primes, lt)
 }

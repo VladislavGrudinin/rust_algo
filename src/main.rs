@@ -9,16 +9,24 @@ use std::mem::{replace, swap, take};
 use std::ops::{self, Add, AddAssign, Bound::Excluded, Deref, Mul, MulAssign, Neg, Sub, SubAssign};
 use std::process::exit;
 
-fn solve(input: &mut Input, out: &mut Output) {
+fn solve(input: &mut Input, out: &mut Output, _data: &Precalc) {
+}
+
+struct Precalc {}
+
+impl Precalc {
+  fn new() -> Self {
+    Precalc {}
+  }
 }
 
 fn main() {
   let mut input = Input::stdin();
   let mut output = Output::stdout();
-  //let tests = input.read_int();
-  let tests = 1;
+  let precalc = Precalc::new();
+  let tests = input.read_int();
   for _ in 0..tests {
-    solve(&mut input, &mut output);
+    solve(&mut input, &mut output, &precalc);
   }
   //let child = std::thread::Builder::new()
   //  .stack_size(128 * 1024 * 1024)
