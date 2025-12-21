@@ -14,9 +14,14 @@ impl SegmentNode {
     Self { v: a.v + b.v }
   }
 
-  pub fn apply(&mut self, v: i64) {}
+  pub fn apply(&mut self, v: i64) {
+    self.v = v;
+  }
 
-  pub fn push(&mut self, a: &mut SegmentNode, b: &mut SegmentNode) {}
+  pub fn push(&mut self, a: &mut SegmentNode, b: &mut SegmentNode) {
+    a.apply(self.v);
+    b.apply(self.v);
+  }
 }
 
 struct SegmentTree {
