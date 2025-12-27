@@ -1,4 +1,4 @@
-#[derive(Clone, Copy, Default)]
+#[derive(Clone, Copy, Default, Debug)]
 pub struct SegmentNode {
   v: i64,
 }
@@ -80,8 +80,8 @@ impl SegmentTree {
   }
 
   pub fn query(&self, mut l: usize, mut r: usize) -> SegmentNode {
-    let mut left = SegmentNode::default();
-    let mut right = SegmentNode::default();
+    let mut left = SegmentNode::new();
+    let mut right = SegmentNode::new();
     l += self.n;
     r += self.n;
     while l < r {
