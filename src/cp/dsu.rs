@@ -13,6 +13,12 @@ impl Dsu {
     }
   }
 
+  pub fn add(&mut self) -> usize {
+    self.p.push(-1);
+    self.groups += 1;
+    self.p.len() - 1
+  }
+
   pub fn reset(&mut self, n: usize) {
     self.p.resize(n, -1);
     self.p.fill(-1);

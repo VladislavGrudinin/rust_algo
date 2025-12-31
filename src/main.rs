@@ -20,7 +20,7 @@ impl Precalc {
   }
 }
 
-fn main() {
+fn run() {
   let mut input = Input::stdin();
   let mut output = Output::stdout();
   let precalc = Precalc::new();
@@ -28,11 +28,14 @@ fn main() {
   for _ in 0..tests {
     solve(&mut input, &mut output, &precalc);
   }
-  //let child = std::thread::Builder::new()
-  //  .stack_size(128 * 1024 * 1024)
-  //  .spawn(run)
-  //  .unwrap();
-  //child.join().unwrap();
+}
+
+fn main() {
+  let child = std::thread::Builder::new()
+    .stack_size(128 * 1024 * 1024)
+    .spawn(run)
+    .unwrap();
+  child.join().unwrap();
 }
 
 pub struct Input {
