@@ -95,7 +95,7 @@ fn find_generator(modulo: usize) -> usize {
     }
     return g;
   }
-  return usize::MAX;
+  usize::MAX
 }
 
 fn get_order(a: usize, primes: &Vec<usize>, modulo: usize) -> usize {
@@ -145,6 +145,6 @@ impl DiscreteLog {
       }
       cur = cur * self.an % self.modulo;
     }
-    return usize::MAX;
+    usize::MAX
   }
 }

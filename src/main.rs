@@ -6,7 +6,9 @@ use std::collections::{BTreeMap, BTreeSet, BinaryHeap, HashMap, HashSet, VecDequ
 use std::io::{self, BufWriter, Read, Write, stdin, stdout};
 use std::marker::PhantomData;
 use std::mem::{replace, swap, take};
-use std::ops::{self, Add, AddAssign, Bound::Excluded, Deref, Mul, MulAssign, Neg, Sub, SubAssign};
+use std::ops::{
+  self, Add, AddAssign, Bound::Excluded, Deref, Div, DivAssign, Mul, MulAssign, Neg, Sub, SubAssign,
+};
 use std::process::exit;
 
 fn solve(input: &mut Input, out: &mut Output, _data: &Precalc) {}

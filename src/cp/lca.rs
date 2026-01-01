@@ -30,7 +30,7 @@ impl Lca {
         u = self.p[u][i];
       }
     }
-    return self.p[v][0];
+    self.p[v][0]
   }
 
   fn raise(&self, mut v: usize, u: usize) -> usize {
