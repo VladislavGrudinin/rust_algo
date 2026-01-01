@@ -1,4 +1,4 @@
-use std::ops::{Add, Sub, Neg, Mul};
+use std::ops::{Add, Mul, Neg, Sub};
 
 #[derive(Clone, Copy, Eq, PartialEq, PartialOrd, Ord, Debug)]
 struct Vec2<T> {
@@ -8,40 +8,28 @@ struct Vec2<T> {
 
 impl<T: Neg<Output = T>> Vec2<T> {
   fn ortho(self) -> Self {
-    Vec2 {
-      x: self.y,
-      y: -self.x,
-    }
+    Vec2 { x: self.y, y: -self.x }
   }
 }
 
 impl<T: Add<Output = T>> Add for Vec2<T> {
   type Output = Self;
   fn add(self, rhs: Self) -> Self::Output {
-    Self {
-      x: self.x + rhs.x,
-      y: self.y + rhs.y,
-    }
+    Self { x: self.x + rhs.x, y: self.y + rhs.y }
   }
 }
 
 impl<T: Sub<Output = T>> Sub for Vec2<T> {
   type Output = Self;
   fn sub(self, rhs: Self) -> Self::Output {
-    Self {
-      x: self.x - rhs.x,
-      y: self.y - rhs.y,
-    }
+    Self { x: self.x - rhs.x, y: self.y - rhs.y }
   }
 }
 
 impl<T: Neg<Output = T>> Neg for Vec2<T> {
   type Output = Self;
   fn neg(self) -> Self::Output {
-    Self {
-      x: -self.x,
-      y: -self.y,
-    }
+    Self { x: -self.x, y: -self.y }
   }
 }
 

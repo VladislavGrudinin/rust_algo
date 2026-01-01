@@ -7,11 +7,7 @@ pub struct Lca {
 impl Lca {
   pub fn new(n: usize, root: usize) -> Lca {
     let log_n = (usize::BITS - n.leading_zeros()) as usize;
-    Lca {
-      p: vec![vec![root; log_n]; n],
-      h: vec![0; n],
-      log_n,
-    }
+    Lca { p: vec![vec![root; log_n]; n], h: vec![0; n], log_n }
   }
 
   pub fn set_parent(&mut self, v: usize, p: usize) {

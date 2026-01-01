@@ -5,9 +5,7 @@ pub struct SegmentNode {
 
 impl SegmentNode {
   pub fn new() -> Self {
-    Self {
-      ..Default::default()
-    }
+    Self { ..Default::default() }
   }
 
   pub fn merge(a: &SegmentNode, b: &SegmentNode) -> Self {
@@ -33,11 +31,7 @@ struct SegmentTree {
 impl SegmentTree {
   pub fn new(n: usize) -> SegmentTree {
     let n = n.next_power_of_two();
-    SegmentTree {
-      t: vec![SegmentNode::new(); 2 * n],
-      n,
-      h: n.ilog2(),
-    }
+    SegmentTree { t: vec![SegmentNode::new(); 2 * n], n, h: n.ilog2() }
   }
 
   pub fn build(&mut self) {

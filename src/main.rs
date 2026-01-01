@@ -9,8 +9,7 @@ use std::mem::{replace, swap, take};
 use std::ops::{self, Add, AddAssign, Bound::Excluded, Deref, Mul, MulAssign, Neg, Sub, SubAssign};
 use std::process::exit;
 
-fn solve(input: &mut Input, out: &mut Output, _data: &Precalc) {
-}
+fn solve(input: &mut Input, out: &mut Output, _data: &Precalc) {}
 
 struct Precalc {}
 
@@ -47,12 +46,7 @@ pub struct Input {
 
 impl Input {
   pub fn stdin() -> Self {
-    Input {
-      stdin: stdin(),
-      buffer: vec![0; 4096],
-      pos: 0,
-      size: 0,
-    }
+    Input { stdin: stdin(), buffer: vec![0; 4096], pos: 0, size: 0 }
   }
 
   fn get(&mut self) -> u8 {

@@ -12,12 +12,7 @@ pub struct Input {
 
 impl Input {
   pub fn stdin() -> Self {
-    Input {
-      stdin: stdin(),
-      buffer: vec![0; 4096],
-      pos: 0,
-      size: 0,
-    }
+    Input { stdin: stdin(), buffer: vec![0; 4096], pos: 0, size: 0 }
   }
 
   fn get(&mut self) -> u8 {

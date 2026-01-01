@@ -7,10 +7,7 @@ pub struct Dsu {
 
 impl Dsu {
   pub fn new(n: usize) -> Dsu {
-    Dsu {
-      p: vec![-1; n],
-      groups: n,
-    }
+    Dsu { p: vec![-1; n], groups: n }
   }
 
   pub fn add(&mut self) -> usize {

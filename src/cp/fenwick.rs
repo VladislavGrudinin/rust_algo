@@ -8,26 +8,17 @@ pub struct FenwickTree<T> {
 
 impl<T: Default + Add<Output = T> + Copy> FenwickTree<T> {
   pub fn new_sum(n: usize) -> Self {
-    Self {
-      t: vec![T::default(); n],
-      op: |a, b| a + b,
-    }
+    Self { t: vec![T::default(); n], op: |a, b| a + b }
   }
 }
 
 impl<T: Ord + Copy> FenwickTree<T> {
   pub fn new_max(n: usize, v: T) -> Self {
-    Self {
-      t: vec![v; n],
-      op: |a, b| cmp::max(a, b),
-    }
+    Self { t: vec![v; n], op: |a, b| cmp::max(a, b) }
   }
 
   pub fn new_min(n: usize, v: T) -> Self {
-    Self {
-      t: vec![v; n],
-      op: |a, b| cmp::min(a, b),
-    }
+    Self { t: vec![v; n], op: |a, b| cmp::min(a, b) }
   }
 }
 
@@ -54,10 +45,6 @@ impl<T: Copy> FenwickTree<T> {
 
 impl<T: Sub<Output = T> + Copy> FenwickTree<T> {
   pub fn sum(&self, l: usize, r: usize) -> T {
-    if l > 0 {
-      self.get(r) - self.get(l - 1)
-    } else {
-      self.get(r)
-    }
+    if l > 0 { self.get(r) - self.get(l - 1) } else { self.get(r) }
   }
 }

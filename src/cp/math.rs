@@ -116,7 +116,6 @@ fn get_ind(a: usize, primes: &Vec<usize>, modulo: usize) -> usize {
   (modulo - 1) / get_order(a, primes, modulo)
 }
 
-
 struct DiscreteLog {
   map: HashMap<usize, usize>,
   an: usize,
