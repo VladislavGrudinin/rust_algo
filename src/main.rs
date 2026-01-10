@@ -135,7 +135,7 @@ impl Writable for char {
 
 impl Writable for str {
   fn write(&self, output: &mut Output) {
-    output.write_all(self.as_bytes()).unwrap();
+    output.out.write_all(self.as_bytes()).unwrap();
   }
 }
 
@@ -241,9 +241,15 @@ impl Output {
     Output { out, delim: b' ' }
   }
 
+  pub fn flush(&mut self) {
+    self.out.flush().unwrap();
+  }
+
   pub fn str(mut self) -> String {
-    self.flush().unwrap();
-    match self.out {
+    self.flush();
+    let buf = BufWriter::new(Vec::new());
+    let out = replace(&mut self.out, OutputDest::Buffer(buf));
+    match out {
       OutputDest::Stdout(_) => String::new(),
       OutputDest::Buffer(buf) => String::from_utf8(buf.into_inner().unwrap()).unwrap(),
     }
@@ -286,13 +292,9 @@ impl Output {
   }
 }
 
-impl Write for Output {
-  fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
-    self.out.write(buf)
-  }
-
-  fn flush(&mut self) -> io::Result<()> {
-    self.out.flush()
+impl Drop for Output {
+  fn drop(&mut self) {
+    self.flush();
   }
 }
 
