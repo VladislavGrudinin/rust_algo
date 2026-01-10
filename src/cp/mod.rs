@@ -8,4 +8,5 @@ pub mod lca;
 pub mod math;
 pub mod mod_int;
 pub mod segment_tree;
+pub mod string;
 pub mod utils;
