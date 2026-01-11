@@ -247,9 +247,7 @@ impl Output {
 
   pub fn str(mut self) -> String {
     self.flush();
-    let buf = BufWriter::new(Vec::new());
-    let out = replace(&mut self.out, OutputDest::Buffer(buf));
-    match out {
+    match self.out {
       OutputDest::Stdout(_) => String::new(),
       OutputDest::Buffer(buf) => String::from_utf8(buf.into_inner().unwrap()).unwrap(),
     }
@@ -269,11 +267,14 @@ impl Output {
   }
 
   fn print_iter_lines<T: Writable, I: Iterator<Item = T>>(&mut self, iter: I) {
-    let old_delim = self.delim;
-    self.delim = b'\n';
-    self.print_iter(iter);
-    self.put(self.delim);
-    self.delim = old_delim;
+    let mut print_delim = false;
+    for a in iter {
+      if print_delim {
+        self.put(b'\n');
+      }
+      print_delim = true;
+      a.write(self);
+    }
   }
 
   fn put(&mut self, c: u8) {
@@ -289,12 +290,6 @@ impl Output {
       print_delim = true;
       a.write(self);
     }
-  }
-}
-
-impl Drop for Output {
-  fn drop(&mut self) {
-    self.flush();
   }
 }
 
